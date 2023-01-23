@@ -8,7 +8,6 @@ Full code for Cryptocurrencies, unsupervised machine learning challenge can be f
 - **Code:**
 ```
 crypto_df = crypto_df[crypto_df.IsTrading != 0]
-
 ```
 - **Output:**
 
@@ -16,7 +15,6 @@ crypto_df = crypto_df[crypto_df.IsTrading != 0]
 - **Code:**
 ```
 crypto_df = crypto_df.drop(["IsTrading"], axis=1)
-
 ```
 -**Output:**
 
@@ -24,7 +22,6 @@ crypto_df = crypto_df.drop(["IsTrading"], axis=1)
 - **Code:**
 ```
 crypto_df = crypto_df[~(crypto_df.isna() == True).any(axis=1)]
-
 ```
 - **Output:**
 
@@ -32,7 +29,6 @@ crypto_df = crypto_df[~(crypto_df.isna() == True).any(axis=1)]
 - **Code:**
 ```
 crypto_df = crypto_df[~(crypto_df.TotalCoinsMined <= 0)]
-
 ```
 - **Output:**
 
@@ -40,7 +36,6 @@ crypto_df = crypto_df[~(crypto_df.TotalCoinsMined <= 0)]
 - **Code:**
 ```
 crypto_df = crypto_df.drop(["CoinName"], axis=1)
-
 ```
 - **Output:**
 
@@ -188,8 +183,7 @@ plot_df.hvplot.scatter(
     x='TotalCoinsMined', 
     y='TotalCoinSupply', 
     hover_cols='CoinName', 
-    by='Class'
-)
+    by='Class')
 ```
 - **Output:**
 

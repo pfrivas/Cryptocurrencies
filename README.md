@@ -20,7 +20,7 @@ crypto_df = crypto_df[crypto_df.IsTrading != 0]
 ```
 crypto_df = crypto_df.drop(["IsTrading"], axis=1)
 ```
--**Output:**
+- **Output:**
 ![1.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.2.png)
 
 

@@ -67,6 +67,8 @@ crypto_df.head(10)
 X = pd.get_dummies(crypto_df, columns=["Algorithm", "ProofType"])
 ```
 - **Output:**
+![1.7](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.7.png)
+
 
 ### The features from the X DataFrame have been standardized using the StandardScaler fit_transform() function
 - **Code:**
@@ -74,7 +76,7 @@ X = pd.get_dummies(crypto_df, columns=["Algorithm", "ProofType"])
 crypto_scaled = StandardScaler().fit_transform(X)
 ```
 - **Output:**
-![1.7](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.7.png)
+![1.8](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.8.png)
 
 
 ## Deliverable 2: Reducing Data Dimensions Using PCA

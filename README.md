@@ -98,7 +98,7 @@ crypto_pca = pca.fit_transform(crypto_scaled)
 pcs_df = pd.DataFrame(crypto_pca, columns=["PC 1", "PC 2", "PC 3"], index=crypto_name_df.index)
 ```
 - **Output:**
-![2.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%202/2.2.png)
+  - ![2.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%202/2.2.png)
 
 
 
@@ -182,7 +182,7 @@ tradable_crypto
 print(f'There are {len(clustered_df)} tradable cryptocurrencies.')
 ```
 - **Output:**
-![4.3](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.3.png)
+  - ![4.3](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.3.png)
 
 ### A DataFrame is created that contains the clustered_df DataFrame index, the scaled data, and the CoinName and Class columns
 - **Code:**

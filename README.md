@@ -4,12 +4,16 @@ Full code for Cryptocurrencies, unsupervised machine learning challenge can be f
 
 ## Deliverable 1: Preprocessing the Data for PCA
 
+
 ### All cryptocurrencies that are not being traded are removed
 - **Code:**
 ```
 crypto_df = crypto_df[crypto_df.IsTrading != 0]
 ```
 - **Output:**
+![1.1](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.1.png)
+
+
 
 ### The IsTrading column is dropped
 - **Code:**
@@ -17,6 +21,8 @@ crypto_df = crypto_df[crypto_df.IsTrading != 0]
 crypto_df = crypto_df.drop(["IsTrading"], axis=1)
 ```
 -**Output:**
+![1.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.2.png)
+
 
 ### All the rows that have at least one null value are removed
 - **Code:**
@@ -24,6 +30,8 @@ crypto_df = crypto_df.drop(["IsTrading"], axis=1)
 crypto_df = crypto_df[~(crypto_df.isna() == True).any(axis=1)]
 ```
 - **Output:**
+![1.3](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.3.png)
+
 
 ### All the rows that do not have coins being mined are removed
 - **Code:**
@@ -31,6 +39,8 @@ crypto_df = crypto_df[~(crypto_df.isna() == True).any(axis=1)]
 crypto_df = crypto_df[~(crypto_df.TotalCoinsMined <= 0)]
 ```
 - **Output:**
+![1.4](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.4.png)
+
 
 ### The CoinName column is dropped
 - **Code:**
@@ -38,6 +48,8 @@ crypto_df = crypto_df[~(crypto_df.TotalCoinsMined <= 0)]
 crypto_df = crypto_df.drop(["CoinName"], axis=1)
 ```
 - **Output:**
+![1.5](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.5%2C1.6.png)
+
 
 ### A new DataFrame is created that stores all cryptocurrency names from the CoinName column and retains the index from the crypto_df DataFrame
 - **Code:**
@@ -47,6 +59,7 @@ print(crypto_df.shape)
 crypto_df.head(10)
 ```
 - **Output:**
+![1.6](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.5%2C1.6.png)
 
 ### The get_dummies() method is used to create variables for the text features, which are then stored in a new DataFrame, X
 - **Code:**
@@ -61,7 +74,7 @@ X = pd.get_dummies(crypto_df, columns=["Algorithm", "ProofType"])
 crypto_scaled = StandardScaler().fit_transform(X)
 ```
 - **Output:**
-
+![1.7](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%201/1.7.png)
 
 
 ## Deliverable 2: Reducing Data Dimensions Using PCA
@@ -73,6 +86,9 @@ pca = PCA(n_components=3)
 crypto_pca = pca.fit_transform(crypto_scaled)
 ```
 - **Output:**
+![2.1](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%202/2.1.png)
+
+
 
 ### The pcs_df DataFrame is created and has the following three columns, PC 1, PC 2, and PC 3, and has the index from the crypto_df DataFrame
 - **Code:**
@@ -80,6 +96,8 @@ crypto_pca = pca.fit_transform(crypto_scaled)
 pcs_df = pd.DataFrame(crypto_pca, columns=["PC 1", "PC 2", "PC 3"], index=crypto_name_df.index)
 ```
 - **Output:**
+![2.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%202/2.2.png)
+
 
 
 ## Deliverable 3: Clustering Cryptocurrencies Using K-means
@@ -92,6 +110,9 @@ elbow_df = pd.DataFrame(elbow_data)
 elbow_df.hvplot.line(x="k", y="inertia", title="Elbow Curve", xticks=k)
 ```
 - **Output:**
+![3.1](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%203/3.1.png)
+
+
 
 ### Predictions are made on the K clusters of the cryptocurrencies’ data
 - **Code:**
@@ -99,6 +120,8 @@ elbow_df.hvplot.line(x="k", y="inertia", title="Elbow Curve", xticks=k)
 predictions = km_model.predict(pcs_df)
 ```
 - **Output:**
+![3.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%203/3.2.png)
+
 
 ### A new DataFrame is created with the same index as the crypto_df DataFrame and has the following columns: Algorithm, ProofType, TotalCoinsMined, TotalCoinSupply, PC 1, PC 2, PC 3, CoinName, and Class
 - **Code:**
@@ -113,7 +136,7 @@ clustered_df["CoinName"] = crypto_name_df.CoinName
 clustered_df["Class"] = km_model.labels_
 ```
 - **Output:**
-
+![3.3](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%203/3.3.png)
 
 ## Deliverable 4: Visualizing Cryptocurrencies Results
 
@@ -133,7 +156,7 @@ fig.update_layout(legend=dict(x=0, y=1))
 fig.show()
 ```
 - **Output:**
-
+![4.1](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.1.png)
 
 ### A table with tradable cryptocurrencies is created using the hvplot.table() function
 - **Code:**
@@ -149,7 +172,7 @@ tradable_crypto= clustered_df.hvplot.table(columns=['CoinName',
 tradable_crypto
 ```
 - **Output:**
-
+![4.2](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.2.png)
 
 ### The total number of tradable cryptocurrencies is printed
 - **Code:**
@@ -157,7 +180,7 @@ tradable_crypto
 print(f'There are {len(clustered_df)} tradable cryptocurrencies.')
 ```
 - **Output:**
-
+![4.3](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.3.png)
 
 ### A DataFrame is created that contains the clustered_df DataFrame index, the scaled data, and the CoinName and Class columns
 - **Code:**
@@ -174,7 +197,7 @@ plot_df['CoinName'] = clustered_df.CoinName
 plot_df['Class'] = clustered_df.Class
 ```
 - **Output:**
-
+![4.4](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.4.png)
 
 ### A hvplot scatter plot is created where the X-axis is "TotalCoinsMined", the Y-axis is "TotalCoinSupply", the data is ordered by "Class", and it shows the CoinName when you hover over the data point
 - **Code:**
@@ -186,4 +209,4 @@ plot_df.hvplot.scatter(
     by='Class')
 ```
 - **Output:**
-
+![4.5](https://github.com/pfrivas/Cryptocurrencies/blob/main/Challenge/Images/Deliverable%204/4.5.png)
